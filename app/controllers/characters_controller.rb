@@ -34,6 +34,8 @@ class CharactersController < ApplicationController
   end
 
   def destroy
+    @character.destroy
+    redirect_to root_path, notice: "Character has been deleted!"
 
   end
 
