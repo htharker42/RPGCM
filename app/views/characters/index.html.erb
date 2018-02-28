@@ -1,3 +1,5 @@
-%h1 index
-
-<%= link_to "New Character", characters#new %>
+<h1>index</h1>
+<% @character.each do |character| %>
+      <h2><%= link_to character.name,  character %> </h2>
+      <p><%= character.description %></p>
+<% end %>
