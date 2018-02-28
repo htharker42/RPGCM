@@ -1,15 +1,15 @@
 class CharactersController < ApplicationController
   before_action :find_character, only: [:show, :update, :destroy, :edit]
   def index
-    @character = Character.all.order("created_at DESC")
+    @character = current_user.characters.all.order("created_at DESC")
   end
 
   def new
-    @character = Character.new
+    @character = current_user.characters.build
   end
 
   def create
-    @character = Character.new(character_params)
+    @character = current_user.characters.build(character_params)
 
     if @character.save
       redirect_to @character, notice: "Save Successful"
