@@ -9,8 +9,23 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <nav class="navbar">
+      <h3><%= link_to "RPG Character Manager", root_path %></h3>
+        <ul class="navbarlist">
+      <% if user_signed_in? %>
+          <li class="navbarlistitem"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <li class="navbarlistitem"><%= link_to "Edit Account", edit_user_registration_path %></li>
+          <li class="navbarlistitem"><%= link_to "Create New Character", new_character_path %></li>
+        <% else %>
+          <li class="navbarlistitem"><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li class="navbarlistitem"><%= link_to "Sign In", new_user_session_path %></li>
+          <%end%>
+      </ul>
+    </nav>
+    <div class="alerts">
+      <p class="notice alert"><%= notice %> <%= alert %></p>
+    </div>
+
 
     <% flash.each do |name, message| %>
       <%= content_tag :div, message, { class: "alert alert-info"} %>

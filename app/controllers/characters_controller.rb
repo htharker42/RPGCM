@@ -1,7 +1,8 @@
 class CharactersController < ApplicationController
-  before_action :find_character, only: [:show, :update, :destroy, :edit]
-  def index
+  before_action :find_character, only: [ :show, :update, :destroy, :edit]
+  def index 
     @character = current_user.characters.all.order("created_at DESC")
+
   end
 
   def new
