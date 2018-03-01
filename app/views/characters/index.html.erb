@@ -1,5 +1,9 @@
-<h1>index</h1>
+<h1>Character Index</h1>
+<h3 class="accountId"> <%= @user.email %> </h3>
+<%= image_tag @user.avatar.url(:thumb) %>
+
 <% @character.each do |character| %>
+      <%= image_tag character.image.url(:thumb) %>
       <h2><%= link_to character.name,  character %> </h2>
       <p><%= character.description %></p>
 <% end %>

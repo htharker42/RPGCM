@@ -1,7 +1,9 @@
 class CharactersController < ApplicationController
   before_action :find_character, only: [:show, :update, :destroy, :edit]
   def index
+
     @character = current_user.characters.all.order("created_at DESC")
+    @user = current_user
   end
 
   def new
@@ -41,12 +43,15 @@ class CharactersController < ApplicationController
 
   private
     def character_params
-      params.require(:character).permit(:name, :description, :id)
+      params.require(:character).permit(:name, :description, :image, :id)
+    end
+
+    def user_params
+      params.require(:user).permit(:email, :id, :avatar)
     end
 
     def find_character
       @character = Character.find(params[:id])
     end
-
 
 end
