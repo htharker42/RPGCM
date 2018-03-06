@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
 #  before_action :authenticate_user!
-  before_action :find_character, only: [:show, :update, :destroy, :edit]
+  before_action :find_character, only: [:show, :edit, :update, :destroy, :edit]
   def index
     if user_signed_in?
       @character = current_user.characters.all.order("created_at DESC")
