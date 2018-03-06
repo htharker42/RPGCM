@@ -9,12 +9,36 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="nav">
+      <nav>
+        <%= image_tag 'default.jpg' %>
+        <div class="title">
+          <%= link_to "RPG Character Manager | ", root_path %>
+          <% if user_signed_in? %>
+            <%= link_to @user.email, edit_user_registration_path %>
+            <%end%>
+        </div>
+        <div class="navmenu">
+          <% if user_signed_in? %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <%= link_to "Manage Account", edit_user_registration_path %>
+        <% else %>
+        <%= link_to "Sign In", new_user_registration_path %>
+        <%= link_to "Sing up", new_user_session_path %>
+        <% end %>
+        </div>
+      </nav>
+    </div>
 
-    <% flash.each do |name, message| %>
-      <%= content_tag :div, message, { class: "alert alert-info"} %>
-    <% end %>
+    <div class="alerts">
+<!--      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+-->
+      <% flash.each do |name, message| %>
+        <%= content_tag :div, message, { class: "alert alert-info"} %>
+      <% end %>
+    </div>
+
     <%= yield %>
   </body>
 </html>

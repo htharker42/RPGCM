@@ -1,6 +1,14 @@
-<h1><%= @character.name %></h1>
-<p><%= @character.description %> </p>
+<div class="col-md-10">
+    <div class="col-md-offset-3">
+      <div class="col-md-offset-4">
+        <%= image_tag @character.image(:medium) %>
+        <h1><%= @character.name %></h1>
+        <p><%= @character.description %> </p>
 
-<%= render 'form'%>
+        <%= render 'form'%>
 
-<%= link_to 'Cancel', root_path %>
+        <%= link_to 'Cancel', root_path %>
+
+    </div>
+  </div>
+</div>

@@ -13,13 +13,15 @@
   </div>
 
   <div class="form-group">
-    <%= f.input :image, input_html: {class: 'form-control'} %>
+  <%= f.input :image, input_html: {class: 'form-control'} %>
 
 <div class="form-group">
   <%= f.input :name, input_html: {class: 'form-control'} %>
 </div>
 <div class="form-group">
 <%= f.input :description, input_html: {class: 'form-control'} %>
-<%= f.button :submit, { class: 'btn btnSubmit' }  %>
+<div class="btn btnSubmit">
+<%= f.button :submit %>
+</div>
 </div>
 <% end %>
