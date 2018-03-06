@@ -1,12 +1,20 @@
 <div class="character_index">
-<% @character.each do |character| %>
-    <div class="card">
-      <div class="imgContainer">
-        <%= image_tag character.image.url(:medium) %>
-        </div>
-        <h2><%= link_to character.name,  character %> </h2>
-      </div>
-<% end %>
-</div>
 
-<%= link_to "Create New Character", new_character_path %>
+      <% @character.each do |character| %>
+          <div class="card">
+            <div class="game_logo"><%= image_tag 'dnd.png'%></div>
+              <div class="img_container">
+                <%= image_tag character.image.url(:medium) %>
+                </div>
+                <%= link_to character.name,  character %>
+              </div>
+      <% end %>
+
+  <div class="card">
+      <div class="game_logo"><%= image_tag 'dnd.png'%></div>
+            <div class="img_container">
+        <%= image_tag 'default.png' %>
+        </div>
+    <%= link_to "Create New Character",  new_character_path%>
+      </div>
+</div>
