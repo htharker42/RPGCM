@@ -11,11 +11,13 @@ class CharactersController < ApplicationController
   end
 
   def new
+@races = ["race/human", "race/dwarf", "race/elf", "race/halfelf","race/halfling","race/halforc","race/gnome","race/tiefling"]
     @character = current_user.characters.build
     @user = current_user
   end
 
   def create
+    @races = ["race/human.png", "race/dwarf.png", "race/elf.png", "race/halfelf.png","race/halfling.png","race/halforc","race/gnome","race/teifling.png"]
     @character = current_user.characters.build(character_params)
     @user = current_user
     if @character.save
@@ -30,10 +32,12 @@ class CharactersController < ApplicationController
   end
 
   def edit
+    @races = ["race/human.png", "race/dwarf.png", "race/elf.png", "race/halfelf.png","race/halfling.png","race/halforc","race/gnome","race/teifling.png"]
     @user = current_user
   end
 
   def update
+    @races = ["race/human.png", "race/dwarf.png", "race/elf.png", "race/halfelf.png","race/halfling.png","race/halforc","race/gnome","race/teifling.png"]
     @user = current_user
     if @character.update(character_params)
       redirect_to @character, notice: "Character has been updated!"
@@ -47,6 +51,7 @@ class CharactersController < ApplicationController
     redirect_to root_path, notice: "Character has been deleted!"
 
   end
+
 
   private
     def character_params
