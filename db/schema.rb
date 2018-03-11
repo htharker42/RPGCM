@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20180305075302) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.string "class1"
+    t.string "class2"
+    t.boolean "multiclass"
     t.string "race"
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
