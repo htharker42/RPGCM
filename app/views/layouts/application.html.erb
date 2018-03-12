@@ -3,12 +3,15 @@
   <head>
     <title>RPG Character Manager</title>
     <%= csrf_meta_tags %>
-
+    <%= javascript_pack_tag 'application' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <script>
+  ReactRailsUJS.mountComponents()
+</script>
     <div class="nav">
       <nav>
         <%= image_tag 'default.jpg' %>

@@ -1,0 +1,2 @@
+class Dndrace < ApplicationRecord
+end

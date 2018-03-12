@@ -11,11 +11,13 @@ class CharactersController < ApplicationController
   end
 
   def new
+    @dndrace = Dndrace.all
     @character = current_user.characters.build
     @user = current_user
   end
 
   def create
+    @dndrace = Dndrace.all
     @character = current_user.characters.build(character_params)
     @user = current_user
     if @character.save
@@ -26,14 +28,17 @@ class CharactersController < ApplicationController
   end
 
   def show
+    @dndrace = Dndrace.all
     @user = current_user
   end
 
   def edit
+    @dndrace = Dndrace.all
     @user = current_user
   end
 
   def update
+    @dndrace = Dndrace.all
     @user = current_user
     if @character.update(character_params)
       redirect_to @character, notice: "Character has been updated!"
@@ -43,6 +48,7 @@ class CharactersController < ApplicationController
   end
 
   def destroy
+    @dndrace = Dndrace.all
     @character.destroy
     redirect_to root_path, notice: "Character has been deleted!"
 
@@ -50,7 +56,7 @@ class CharactersController < ApplicationController
 
   private
     def character_params
-      params.require(:character).permit(:name, :description, :image, :id)
+      params.require(:character).permit(:name, :description, :image, :race, :id)
     end
 
     def user_params

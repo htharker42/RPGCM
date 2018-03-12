@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-class RaceSelector extends React.Component {
+export class RaceSelector extends React.Component {
     constructor(props){
       super(props)
       this.state = {
@@ -11,7 +11,6 @@ class RaceSelector extends React.Component {
                     image: "app/assets/images/default.jpg"
                   }
     }
-
     render() {
       return(
     <div>
@@ -21,11 +20,7 @@ class RaceSelector extends React.Component {
           <br />
           <input type = "submit" value = "Create Character" />
         </form>
-    </div> )
+    </div>
+  );
     }
 }
-document.addEventListener('DOMContentLoaded', () => {
-ReactDOM.render(
-	 <RaceSelector />, document.getElementById('app'),
-  )
-})

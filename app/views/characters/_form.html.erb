@@ -1,5 +1,3 @@
-
-<%= javascript_pack_tag 'raceselector' %>
 <%= simple_form_for(@character) do |f| %>
 <% if @character.errors.any? %>
   <div id="errors">
@@ -20,12 +18,18 @@
 <div class="form-group">
   <%= f.input :name, input_html: {class: 'form-control'} %>
 </div>
+
 <div class="form-group">
       <%= f.input :description, input_html: {class: 'form-control'} %>
       <%= f.button :submit%>
 </div>
 
+<% end %>
+<% @dndrace.each do |race| %>
+
+<% end %>
+<%= react_component("Dndraceselector", { data: @dndrace, character: @character}) %>
+<h4>Character Race</h4>
 <div id="app">
 
 </div>
-<% end %>

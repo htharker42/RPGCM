@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Dndrace.create(name: 'Human', description: "This is a human", image: "races/human")
+Dndrace.create(name: 'Elf', description: "This is an elf", image: "races/elf")
+Dndrace.create(name: 'Dwarf', description: "This is a dwarf", image: "races/dwarf")
