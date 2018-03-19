@@ -1,4 +1,5 @@
 class CharactersController < ApplicationController
+  protect_from_forgery with: :null_session
 #  before_action :authenticate_user!
   before_action :find_character, only: [:show, :edit, :update, :destroy, :edit]
   def index
@@ -20,13 +21,26 @@ class CharactersController < ApplicationController
     @dndrace = Dndrace.all
     @character = current_user.characters.build(character_params)
     @user = current_user
+
+    #respond for React Ajax requests
+        respond_to do |format|
+          if @character.save
+            format.html { redirect_to @character, notice: 'Character was successfully created.' }
+            format.json { render json: @character, notice: 'Character was created.' }
+          else
+           format.html { render :new }
+          end
+      end
+end
+=begin
+# --- Code for Simple_form Save Protocall
     if @character.save
       redirect_to @character, notice: "Save Successful"
     else
       render 'new'
     end
   end
-
+=end
   def show
     @dndrace = Dndrace.all
     @user = current_user

@@ -28,8 +28,9 @@
 <% @dndrace.each do |race| %>
 
 <% end %>
-<%= react_component("Dndraceselector", { data: @dndrace, character: @character}) %>
+<%= react_component("DndForm", { dndraces: @dndrace, character: @character }) %>
 <h4>Character Race</h4>
 <div id="app">
 
 </div>
+# raw(render(template: './characters/index.json.jbuilder'))

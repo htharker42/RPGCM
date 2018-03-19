@@ -2,25 +2,34 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-export class RaceSelector extends React.Component {
+class RaceSelector extends React.Component {
+  componentDidMount() {
+          console.log('Component mounted');
+      }
+
     constructor(props){
       super(props)
       this.state = {
-                    race: "",
+                    races: this.props.dndrace,
                     character: this.props.character,
                     image: "app/assets/images/default.jpg"
                   }
+    this.handleChangeRace = this.handleChangeRace.bind(this);
     }
+
+    handleChangeRace(e){
+      var raceObj = {race: e.target.value}
+      this.setState({character: raceObj})
+    }
+
     render() {
-      return(
-    <div>
-        <h3> test </h3>
-        <form>
-          <input type = "text" name = "Character name" />
-          <br />
-          <input type = "submit" value = "Create Character" />
-        </form>
-    </div>
-  );
+      var races = this.state.races.id.map((dndraces)=>{
+        return(
+              <div class="raceButton">
+              <input type="button" value = {dndraces.name} onClick={this.handleChangeRace}/>
+              </div>
+              )
+          });
     }
 }
+export default RaceSelector

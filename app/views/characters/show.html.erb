@@ -3,6 +3,7 @@
 <h1> <%= @character.name %> </h1>
 <h2><%= @character.user.email %></h2>
 <p> <%= @character.description %></p>
+<h3><%= @character.race %></h3>
 
 <%= link_to "Back", root_path %>
 <%= link_to "Edit", edit_character_path %>
