@@ -2,10 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-class RaceSelector extends React.Component {
-  componentDidMount() {
-          console.log('Component mounted');
-      }
+export class RaceSelector extends React.Component {
 
     constructor(props){
       super(props)
@@ -32,4 +29,3 @@ class RaceSelector extends React.Component {
           });
     }
 }
-export default RaceSelector

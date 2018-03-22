@@ -26,7 +26,8 @@ class CharactersController < ApplicationController
         respond_to do |format|
           if @character.save
             format.html { redirect_to @character, notice: 'Character was successfully created.' }
-            format.json { render json: @character, notice: 'Character was created.' }
+            format.json { redirect_to root_path, notice: 'Character was created.'}
+            #render json:
           else
            format.html { render :new }
           end

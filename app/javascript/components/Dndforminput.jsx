@@ -2,40 +2,46 @@ import React from "react"
 import PropTypes from "prop-types"
 
 export class Dndforminput extends React.Component {
-  componentDidMount() {
-          console.log('Dndforminput mounted');
-      }
 
     constructor(props){
-      super(props)
+    super(props)
     this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(e){
-      var formItem= e.target.value
-      this.props.onChange(formItem)
+      let keyID = e.target.name;
+      let datum = e.target.value;
+      this.props.onChange(keyID, datum);
     }
 
-    formItem(){
-      return(
-        <div>
-          <input type = "text" name = {this.props.name} value = {this.props.value} onClick= {this.handleChange} />
-        </div>
-      );
-    }
 
     render() {
       let classname = `${this.props.name}formItem`;
+      let label = `${this.props.name.toUpperCase()}: `;
       return(
-        <div className= {classname}>
-          {this.formItem}
-        </div>
+        <div className = {classname}>
+              <label>{label}
+                <input
+                  type = "text"
+                  name = {this.props.name}
+                  value = {this.props.value}
+                  onChange= {this.handleChange} />
+              </label>
+      </div>
     )
   }
 }
 /*
 Dndraceselector.propTypes = {
-  race: PropTypes.array
+  race: PropTypes.array,
+  name: Proptype.string,
+  value: Proptype.string
 };
 */
-//export default Dndraceselector
+/*
+<input
+  type="text"
+  name={this.props.name}
+  value = {this.props.value}
+  onChange={this._handleChange} />
+*/

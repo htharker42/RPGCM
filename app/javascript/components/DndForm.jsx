@@ -2,84 +2,109 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Dndraceselector } from "./Dndraceselector";
 import { Dndforminput } from "./Dndforminput";
-import { Api } from "./api";
+//import { Api } from "./api";
+import { ImageUpload } from "./Imageuploader";
 
 class DndForm extends React.Component {
   debugger;
   constructor(props){
     super(props)
-  
-    //create standard state objects: 
+
+    //create standard state objects:
+    //Character dataset will be very large and dynamic
+    //dynamically create state values for each value in the Character Object
+    //Bug fix for issues with state.character.value not updating correctly
             this.state={
-                      character: this.props.character, //character object will be update the Character Model. 
+                      character: this.props.character, //character object will be update the Character Model.
                       dndraces: this.props.dndraces
                     }
-                    //Character dataset will be very large and dynamic 
-                    //dynamically create state values for each value in the Character Object
-                    //Bug fix for issues with state.character.value not updating correctly 
                     let keyID;
                     for(keyID of Object.keys(this.props.character)){
-                      if (this.props.character[keyID] == null){
-                        this.state[keyID] = `Enter ${keyID}`;
-                      }else{
-                        this.state[keyID]= this.props.character[keyID]; 
-                      }
+                        this.state[keyID]= this.props.character[keyID];
                     }
-                    console.log(this.state)
-                    console.log(this.state.user_id)
-                    
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeForm = this.handleChangeForm.bind(this);
     this.handleChangeRace = this.handleChangeRace.bind(this);
+    this.handleImage = this.handleImage.bind(this);
   }
-  
+
   handleSubmit(e){
     e.preventDefault();
-    //Api.post( '.', {character: this.state.character}) //TODO finish custom API to handle POST requests: BUG: cross site computational trust fail via UserToken 
+    //Api.post( '.', {character: this.state.character}) //TODO finish custom API to handle POST requests: BUG: cross site computational trust fail via UserToken
     //bundle state data into character object and pass back to Character Model
-    let characterStat = {};
+    let character= {};
+    let keyID;
     for(keyID of Object.keys(this.props.character)){
-      characterStat = {keyID: this.state[keyID]};  //prepackage object
-      this.setState({character: characterStat})
+      character[keyID] = this.state[keyID];
     }
-    $.ajax({
-      url: ".", 
+  console.log(character)
+let requestType;
+this.props.character.id != null ? requestType = "PUT": requestType = "POST";
+
+  $.ajax({
+      url: ".",
       dataType: 'JSON',
-      type: 'POST',
-      data: this.state.character, 
-      success: (response) => { console.log('it effing worked!', response, this.state.character);},
+      type: requestType,
+      data: {character: character},
+      success: (response) => { console.log('it effing worked!', response);},
       error: function(response, status, err) { console.log("there was an error", err) }
     });
-    }
-    
-    
-  handleChange(e){
-    let datum = e.target.value;
-    let keyID = e.target.name;
-    console.log(this.state.name);
-    this.setState({[keyID]: datum}) //pass to display value
-  }
-  
+}
+
+handleChangeForm(keyID, e){
+  this.setState({[keyID]: e}) //pass to display value
+}
+
   handleChangeRace(e){
-    var raceObj = {race: e}
-    this.setState({character: raceObj})
+    this.setState({race: e})
   }
-  
+  handleImage(e){
+    let lgth = e.length-1;
+    let filetype = e.substr(lgth, -3);
+        console.log(selectedFile);
+        console.log(e);
+        console.log(lgth);
+        console.log(filetype);
+    this.setState(image_content_type: filetype);
+    this.setState(image_file_name: e);
+    //this.setState(image_file_size: null );
+    //this.setState(image_updated_at: null );
+  }
+
   render(){
+    let keyID;
+
     return (
       <div>
-        <h1>Character Sheet</h1>
+        <h1>Character Sheet:</h1>
         <h1>Character Name: {this.state.name}</h1>
         <h2>Character Description: {this.state.description} </h2>
         <h2>Character Race: {this.state.race}</h2>
         <form className="dndForm">
-              <h4>Character Name: {this.state.name}</h4>
-              <input type = "text" name = "name" value = {this.state.name} onClick= {this.handleChange} />
-            //  <Dndforminput name="name" value={this.state.name} onChange={this.handleChange} />
-            //  <br/>
-            //  <Dndforminput name="description" value={this.state.description} onChange={this.handleChange} />
-              <Dndraceselector character={this.state.race} races={this.state.dndraces} onChange={this.handleChangeRace}/>
-              <input type="submit" value="Create Character" onClick={this.handleSubmit}/> 
+              <Dndforminput
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChangeForm}
+                />
+
+              <Dndforminput
+                name="description"
+                value={this.state.description}
+                onChange={this.handleChangeForm}
+                />
+
+              <ImageUpload
+                name = "image_content_file"
+                onChange={this.handleImage} />
+
+              <Dndraceselector
+                character={this.props.race}
+                races={this.props.dndraces}
+                onChange={this.handleChangeRace}/>
+
+            <input type="submit"
+              value="Create Character"
+              onClick={this.handleSubmit}/>
         </form>
     </div>
     )

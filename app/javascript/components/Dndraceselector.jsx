@@ -8,11 +8,10 @@ export class Dndraceselector extends React.Component {
 
     constructor(props){
       super(props)
-
-    this.handleChange = this.handleChange.bind(this);
+      this._handleChange = this._handleChange.bind(this);
     }
 
-    handleChange(e){
+    _handleChange(e){
       var dndrace = e.target.value
       this.props.onChange(dndrace)
     }
@@ -20,8 +19,10 @@ export class Dndraceselector extends React.Component {
     render() {
       var raceForm = this.props.races.map((dndrace)=>{
         return(
-            <input key={dndrace.id} type = "button" value = {dndrace.name} onClick= {this.handleChange} />
-        )});
+            <input key={dndrace.id} type = "button" value = {dndrace.name} onClick= {this._handleChange} />
+        )
+      }
+    );
 
       return(
         <div className= "dndRacebutton">
