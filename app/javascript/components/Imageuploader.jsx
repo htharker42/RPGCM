@@ -3,14 +3,20 @@ import React from "react";
 export class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {file: '',imagePreviewUrl: ''};
+    this.state = {
+                    file: '',
+                    imagePreviewUrl: ''
+                  };
     this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleImageChange = this._handleImageChange.bind(this);
   }
 
   _handleSubmit(e) {
     e.preventDefault();
-    this.props.onChange(this.state.file);
+    console.log(e);
+    //this.props.onChange(this.state.file);
     console.log('handle uploading-', this.state.file);
+
   }
 
   _handleImageChange(e) {

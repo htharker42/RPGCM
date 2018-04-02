@@ -26,22 +26,14 @@ class CharactersController < ApplicationController
         respond_to do |format|
           if @character.save
             format.html { redirect_to @character, notice: 'Character was successfully created.' }
-            format.json { redirect_to root_path, notice: 'Character was created.'}
+            format.json { redirect_to @character, notice: 'Character was created.'}
             #render json:
           else
            format.html { render :new }
           end
       end
 end
-=begin
-# --- Code for Simple_form Save Protocall
-    if @character.save
-      redirect_to @character, notice: "Save Successful"
-    else
-      render 'new'
-    end
-  end
-=end
+
   def show
     @dndrace = Dndrace.all
     @user = current_user
@@ -66,12 +58,11 @@ end
     @dndrace = Dndrace.all
     @character.destroy
     redirect_to root_path, notice: "Character has been deleted!"
-
   end
 
   private
     def character_params
-      params.require(:character).permit(:name, :description, :image, :race, :id)
+      params.require(:character).permit(:name, :description, :image, :race, :class1, :class2, :hasSubRace, :subRace, :str, :dex, :con, :int, :wis, :cha, :speed, :proficiencyBonus, :passivePerception, :perks, :id)
     end
 
     def user_params

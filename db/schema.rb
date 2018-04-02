@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(version: 20180311023233) do
     t.string "class2"
     t.boolean "multiclass"
     t.string "race"
+    t.boolean "hasSubRace"
+    t.string "subRace"
+    t.integer "str"
+    t.integer "dex"
+    t.integer "con"
+    t.integer "int"
+    t.integer "wis"
+    t.integer "cha"
+    t.integer "speed"
+    t.integer "proficiencyBonus"
+    t.integer "passivePerception"
+    t.string  "perks"
+    
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
@@ -33,6 +46,11 @@ ActiveRecord::Schema.define(version: 20180311023233) do
     t.string "name"
     t.text "description"
     t.string "image"
+    t.string "raceMods"
+    t.boolean "hasSubRaces"
+    t.string "subRaces"
+    t.string "skillMods"
+    t.string "resistanceMods"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

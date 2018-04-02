@@ -22,5 +22,15 @@ module RPGCM
          end
        end
 
+       # config/application.rb
+       config.middleware.insert_before 0, Rack::Cors do
+         allow do
+           origins '*'
+           resource '*',
+                    headers: :any,
+                    methods: %I[get post options delete patch puts]
+         end
+       end
+
   end
 end
