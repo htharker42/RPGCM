@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Axios from 'axios';
+import { HandleBaseStats } from "./handleBaseStats";
 import { Dndraceselector } from "./Dndraceselector";
 import { Dndforminput } from "./Dndforminput";
 //import { Api } from "./api";
@@ -19,12 +20,27 @@ class DndForm extends React.Component {
             this.state={
                       character: this.props.character, //character object will be update the Character Model.
                       dndraces: this.props.dndraces,
-                      image: {}
+                      image: {},
+                      statPool: 30,
+                      stats: ["str", "dex", "con","int","wis","cha"],
+                      speed: 0,
+                      passivePerception: 0,
+                      speedMod: 0,
+                      passivePerceptionMod: 0,
+                      subRaceName: ""
                     }
+
                     let keyID;
                     for(keyID of Object.keys(this.props.character)){
                         this.state[keyID]= this.props.character[keyID];
                     }
+                    //key attribute Modifier
+                    this.state.stats.forEach((x)=>{
+                      let modName = (x+"Mod")
+                      this.state[modName] = 0
+                    })
+    this._handleAttributeModsArray = this._handleAttributeModsArray.bind(this)
+    this.handleStatChange = this.handleStatChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeForm = this.handleChangeForm.bind(this);
     this.handleChangeRace = this.handleChangeRace.bind(this);
@@ -42,7 +58,6 @@ class DndForm extends React.Component {
       character[keyID] = this.state[keyID];
     }
 
-  //console.log(character)
   let requestType;
   this.props.character.id != null ? requestType = "PUT": requestType = "POST";
   $.ajax({
@@ -59,46 +74,40 @@ handleChangeForm(keyID, e){
   this.setState({[keyID]: e}) //pass to display value
 }
 
-_parser(raceMods){
-  const raceArray = raceMods.split(",");
-  let mods = raceArray.map((mod)=>{
-    if(mod[0] === "["){
-      mod = mod;
-    }else{
-      mod = eval(mod);
+handleStatChange(statName, statMod, statPool){
+    let mod = statName + "mod";
+    console.log(mod);
+
+    this.setState({[statName]: statMod});
+    this.setState({statPool: statPool});
     }
-      //console.log(mod)
-    return (mod);
-  })
+
+_parser(mods){
+  mods = mods.map((mod)=>{
+    isNaN(mod)? mod = mod.split(",") : mod = eval(mod);
+    return(mod);
+    })
+  return(mods);
 }
 
-  handleChangeRace(race, id){
-    let dndRace = {}
-    let modsArray = ["str", "dex", "con","int","wis","cha","speed","passivePerception"];
-    dndRace = this.state.dndraces[id];
-    let dndRaceMods = dndRace.raceMods.split(",");
-    let mods = dndRaceMods.map((mod)=>{
-      if(mod[0] === "["){
-        mod = mod;
-      }else{
-        mod = eval(mod);
-      }
-      return(mod);
-    })
+_handleAttributeModsArray(attributes){
+  let modsArray = ["strMod", "dexMod", "conMod","intMod","wisMod","chaMod","speedMod","passivePerceptionMod"];
+  let x = 0;
+  modsArray.forEach((mod) => {
+      this.setState({[mod]: attributes[x]})
+      x+=1;
+    });
+}
 
-    let x = 0;
-    let baseStat;
-    modsArray.forEach((mod) => {
-        baseStat = this.state[mod] + mods[x];
-        this.setState({[mod]: baseStat})
-        x+=1;
-      })
-
-    this.setState({race: race})
-    console.log(mods);
-    console.log(this.state.str)
+handleChangeRace(race, id, subRaceName, attributeMods, mode){
+    console.log(attributeMods)
+    if (mode === "POST"){
+      this.setState({race: race, subRaceName: subRaceName})
+    } else if (mode === "PATCH"){
+      this.setState({subRaceName: subRaceName})
+    }
+    this._handleAttributeModsArray(attributeMods)
   }
-
 
   handleImage(e){
     this.setState({image: e});
@@ -127,11 +136,25 @@ _parser(raceMods){
           console.log(this.state)
         });
       });
-
     }
 
   render(){
-    let keyID;
+
+    let characterStats = this.state.stats.map((stat)=>{
+      let statModifier = stat+"Mod";
+      this.state[stat] === null ? this.setState({[stat]: Math.floor(Math.random() * Math.floor(12))}): this.state[stat];
+      return(
+          <div className="statline">
+              <HandleBaseStats
+                statModifier = {this.state[statModifier]}
+                stat = {stat}
+                statPool={this.state.statPool}
+                statValue = {this.state[stat]}
+                onClick = {this.handleStatChange}
+                />
+          </div>
+        )
+      })
 
     return (
       <div>
@@ -140,15 +163,12 @@ _parser(raceMods){
         <h1>Character Name: {this.state.name}</h1>
         <h2>Character Description: {this.state.description} </h2>
         <h2>Character Race: {this.state.race}</h2>
+        <h2>Character SubRace: {this.state.subRaceName}</h2>
         <div id="Base Attributes">
-          <h3>Str: {this.state.str}</h3>
-          <h3>Dex: {this.state.dex}</h3>
-          <h3>Con: {this.state.con}</h3>
-          <h3>Int: {this.state.int}</h3>
-          <h3>Wis: {this.state.wis}</h3>
-          <h3>Cha: {this.state.cha}</h3>
-          <h3>Speed: {this.state.speed}</h3>
-          <h3>Passive Perception: {this.state.passivePerception}</h3>
+          <h3>Attribute Pool: {this.state.statPool}</h3>
+          {characterStats}
+          <h3>Speed: {this.state.speedMod}</h3>
+          <h3>Passive Perception: {this.state.passivePerceptionMod}</h3>
         </div>
         <form className="dndForm">
 

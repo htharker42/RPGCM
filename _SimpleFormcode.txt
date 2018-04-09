@@ -7,8 +7,23 @@
     this.setState({[keyID]: datum}) //pass to display value
   }
 */
+
+/*dndRaceMods = dndRaceMods.map((mod)=>{
+  if(mod[0] === "["){
+    mod = mod.replace("[","").replace("]","").split(",");
+  }else{
+    mod = eval(mod);
+  }
+  return(mod);
+})*/
+
   //  this.handleChange = this.handleChange.bind(this);
 
+  /*if(mod[0] === "["){
+    mod = mod.replace("[","").replace("]","").split(",");
+  }else{
+    mod = eval(mod);
+  }*/
 
 
 <%= simple_form_for(@character) do |f| %>
