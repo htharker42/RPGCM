@@ -7,7 +7,6 @@ import { Dndforminput } from "./Dndforminput";
 //import { Api } from "./api";
 import { ImageUpload } from "./Imageuploader";
 
-
 class DndForm extends React.Component {
   debugger;
   constructor(props){
@@ -46,7 +45,6 @@ class DndForm extends React.Component {
     this.handleChangeRace = this.handleChangeRace.bind(this);
     this.handleImage = this.handleImage.bind(this);
   }
-
 
   handleSubmit(e){
     e.preventDefault();
@@ -158,26 +156,22 @@ handleChangeRace(race, id, subRaceName, attributeMods, mode){
 
     return (
       <div>
-
-        <h1>Character Sheet:</h1>
-        <h1>Character Name: {this.state.name}</h1>
-        <h2>Character Description: {this.state.description} </h2>
-        <h2>Character Race: {this.state.race}</h2>
-        <h2>Character SubRace: {this.state.subRaceName}</h2>
-        <div id="Base Attributes">
+        <div className= "characterHeader">
+          <h2>Character Sheet:</h2>
+            <Dndforminput
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChangeForm}
+              />
+          <h3>Race: {this.state.race} {`| ${this.state.subRaceName}`}</h3>
+        </div>
+        <div className="characterStats">
           <h3>Attribute Pool: {this.state.statPool}</h3>
           {characterStats}
           <h3>Speed: {this.state.speedMod}</h3>
           <h3>Passive Perception: {this.state.passivePerceptionMod}</h3>
         </div>
         <form className="dndForm">
-
-              <Dndforminput
-                name="name"
-                value={this.state.name}
-                onChange={this.handleChangeForm}
-                />
-
               <Dndforminput
                 name="description"
                 value={this.state.description}

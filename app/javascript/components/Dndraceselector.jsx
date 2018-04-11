@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Dndhandlesubraces } from "./Dndhandlesubraces"
+//import { Dndhandlesubraces } from "./Dndhandlesubraces"
+//TODO refactor subrace to stateless class, finish commenting functions, refactor to stateless
+
 
 export class Dndraceselector extends React.Component {
 
@@ -9,6 +11,7 @@ export class Dndraceselector extends React.Component {
       this.state = {
           clicked: "",
           raceName: "",
+          hasSubRaces: false,
           subRaces: [],
           subRace: "",
           subRaceName: "",
@@ -34,20 +37,24 @@ export class Dndraceselector extends React.Component {
       return(mods);
     }
 
-    _handleSubRaces(subRs){
-      //input subRace string:  parse by seperator and send to _parser to convert to array : return array of all subRaces
-      let subRaces = subRs.split("|"); //divide up subRaces
-      //pass divided strings to string parser
-      subRaces = subRaces.map((subRace)=>{
-        subRace = this._parser(subRace.split(","));
-        return(subRace);
-        })
-      this.setState({subRaces: subRaces});
-      return(subRaces)
+    _handleSubRaces(subRaces){
+      if (subRaces != "nil"){
+        //input subRace string:  parse by seperator and send to _parser to convert to array : return array of all subRaces
+        subRaces = subRaces.split("|"); //divide up subRaces
+        //pass divided strings to string parser
+        subRaces = subRaces.map((subRace)=>{
+          subRace = this._parser(subRace.split(","));
+          return(subRace);
+          })
+        this.setState({hasSubRaces: true, subRaces: subRaces});
+        return(subRaces)
+    }else{
+        this.setState({hasSubRaces: false})
+      }
     }
 
     _handleAttributeMods(mods, mode){
-      //input attribute mods and mode to deliniate handeling : processes singular mods : 
+      //input attribute mods and mode to deliniate handeling : processes singular mods : return array of all applied mods
       mods = this._parser(mods.split(","))
       if(mode === "attributeModsSubRace"){
         let subRaceName = mods[0];
@@ -60,13 +67,13 @@ export class Dndraceselector extends React.Component {
     }
 
     _handleSubRaceSelection(e){
+      //
         var attributeMods = []; //reset attributeMods everytime button is clicked
         attributeMods = this._handleAttributeMods(e.target.id, "attributeModsSubRace");
         this.props.onChange( this.state.raceName, "", e.target.value, attributeMods, "PATCH");
     }
 
   _packMods(subRaceMods){
-
       //if user selects subRace add Modifications to race Modifications to send back to form
         var count = 0;
         var modsArray = this.state.attributeMods.map((mod)=>{
@@ -96,10 +103,15 @@ export class Dndraceselector extends React.Component {
       let race = this.props.races[dndRaceId];
       let skillMods = race.skillMods;
       let resistanceMods = race.resistanceMods;
-      let subRaces = this._handleSubRaces(race.subRaces);
+
       let dndRaceMods = [];
       this._resetSelection() //nullify any subrace selections
       let attributeMods = this._handleAttributeMods(race.raceMods, "attributeMods")
+
+      let subRaces;
+      race.hasSubRaces? subRaces = race.subRaces : subRaces = "nil";
+
+      subRaces = this._handleSubRaces(subRaces);
 
       this.props.onChange(
         dndrace,
@@ -108,22 +120,10 @@ export class Dndraceselector extends React.Component {
     }
 
     render() {
-      var subRaces = this.state.subRaces.map((subRace)=>{
-            let subRaceName = subRace[0].trim();
-            return(
-              <div>
-                <input type = "button"
-                  key={subRaceName}
-                  value={subRaceName}
-                  id={subRace}
-                  onClick = {this._handleSubRaceSelection}/>
-              </div>
-            )
-          })
 
       var raceForm = this.props.races.map((dndrace)=>{
         return(
-          <div>
+          <div className = "racemenu">
             <input
               key={dndrace.id}
               id= {dndrace.id}
@@ -135,9 +135,27 @@ export class Dndraceselector extends React.Component {
       }
     );
 
+    if(this.state.hasSubRaces === true){
+    var subRaces = this.state.subRaces.map((subRace)=>{
+          let subRaceName = subRace[0].trim();
+          return(
+            <div className = "subRacemenu">
+              <input type = "button"
+                key={subRaceName}
+                value={subRaceName}
+                id={subRace}
+                onClick = {this._handleSubRaceSelection}/>
+            </div>
+          )
+        })
+      }else{
+      }
+
       return(
-        <div className= "dndRacebutton">
+
+        <div className= "dndRacebutton" >
           {raceForm}
+          <br />
           {subRaces}
         </div>
     )

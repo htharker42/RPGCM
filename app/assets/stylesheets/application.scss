@@ -59,3 +59,94 @@
      }
    }
  }
+
+    .dndRacebutton{
+      background-color: white;
+      border: 2px solid purple;
+      width: 100%;
+      height: 150px;
+      display: inline-block;
+    }
+
+    .subRacemenu{
+      display: inline-flex;
+      background-color: lightgray;
+      input{
+          background-color: darkGray;
+          width: 150px;
+          height: 50px;
+          font-size: 1.5rem;
+          color: purple;
+          font-weight: bold;
+          padding: 3px;
+          border-radius: 10px;
+      }
+
+    }
+
+    .racemenu{
+      display: inline;
+      input{
+        width: 150px;
+        height: 50px;
+        font-size: 1.5rem;
+        background-color: purple;
+        color: white;
+        font-weight: bold;
+        padding: 3px;
+        border-radius: 10px;
+      }
+    }
+    .characterHeader{
+      color: black;
+      font-size: 1.5rem;
+      width: 500px;
+      border: 1px solid black;
+      position: relative;
+      display: inline-block;
+      top: -20px;
+      left: -10px;
+      right: -10px;
+      margin: 10px;
+      padding: 1px;
+    }
+    
+    .characterStats{
+      color: black;
+      font-size: 1.5rem;
+      width: 500px;
+      border: 1px solid black;
+      position: relative;
+      display: inline-block;
+      top: -20px;
+      left: -10px;
+      right: -10px;
+      margin: 10px;
+      padding: 1px;
+    }
+    .characterStats{
+        border: 3px solid gray;
+      button{
+        padding: 2px 3px;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        color: black;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 2rem;
+        background-color: purple;
+      }
+
+      h3{
+        padding: 2px 3px;
+        display: inline;
+        font-size: 1.5rem;
+        color: purple;
+      }
+      h4{
+        color: darkGray;
+        font-size: 1.5rem;
+        display: inline-block;
+        }
+      }

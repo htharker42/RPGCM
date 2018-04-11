@@ -30,8 +30,7 @@ Dndrace.create( name: 'Human',
                 #mod array: str dex con int wis cha speed darkvision misc
                 raceMods: "0,0,0,0,0,0,30,0, nil ",
                 hasSubRaces: true,
-                subRaces: "
-                          Calishite,0,0,0,0,0,0,0,0,nil |
+                subRaces: "Calishite,0,0,0,0,0,0,0,0,nil |
                           Chondathan,0,0,0,0,0,0,0,0, nil  |
                           Illuskan, 0,0,0,0,0,0,0,0, nil   |
                           Mulan, 0,0,0,0,0,0,0,0, nil   |
@@ -46,23 +45,74 @@ Dndrace.create(
                 description: "Elves are graceful, magical creatures, with a slight build.",
                 image: "races/elf",
                 #mod array: str dex con int wis cha speed darkvision misc
-                raceMods: "0,2,0,0,0,0,30,60, nil ",
+                raceMods: "0,2,0,0,0,0,30,60, nil",
                 hasSubRaces: true,
                 skillMods: "perception: 1",
                 resistanceMods: "Magical-Sleep immunity",
-                subRaces: "
-                          HighElf, 0,0,0,1,0,0,0,0, nil |
-                        "
+                subRaces: "HighElf, 0,0,0,1,0,0,0,0,nil | Drow, 0,0,0,0,0,0,0,60,nil"
   )
 Dndrace.create(name: 'Dwarf',
-              description: "This is a dwarf",
+              description: "Dwarves are short and stout and tend to be skilled warriors and craftmen in stone and metal.",
               image: "races/dwarf",
               #mod array: str dex con int wis cha speed darkvision misc
               raceMods: "0,0,0,0,0,0,25,60, nil ",
               hasSubRaces: true,
               skillMods: "perception: 1",
               resistanceMods: "Poison Damage Resistance",
-              subRaces: "
-                        HillDwarf, 0,0,0,0,1,0,0,0, nil  "
+              subRaces: "Hill Dwarf, 0,0,0,0,1,0,0,0, nil"
+            )
 
+Dndrace.create(name: 'Gnome',
+              description: "Gnomes are small, intelligent humanoids who live life with the utmost of enthusiasm.",
+              image: "races/gnome",
+              #mod array: str dex con int wis cha speed darkvision misc
+              raceMods: "0,0,0,2,0,0,30,60, nil ",
+              hasSubRaces: true,
+              skillMods: "insight: 1 | religion: 4",
+              resistanceMods: "Poison Damage Resistance",
+              subRaces: "Rock Gnome, 0,0,1,0,0,0,0,0, nil"
+            )
+
+Dndrace.create(name: 'Half Elf',
+              description: "Half-elves are charismatic, and bear a resemblance to both their elvish and human parents and share many of the traits of each.",
+              image: "races/halfelf",
+              #mod array: str dex con int wis cha speed darkvision misc
+              raceMods: "0,0,0,0,0,2,30,60, nil ",
+              hasSubRaces: false,
+              skillMods: "insight: 1 | religion: 1",
+              resistanceMods: "Poison Damage Resistance",
+              subRaces: ""
+            )
+
+  Dndrace.create(name: 'Half Orc',
+                description: "Half-orcs are strong and bear an unmistakable resemblance to their orcish parent. They tend to make excellent warriors, especially Barbarians.",
+                image: "races/halforc",
+                #mod array: str dex con int wis cha speed darkvision misc
+                raceMods: "2,0,1,0,0,0,30,60, Intimidation proficiency ",
+                hasSubRaces: false,
+                skillMods: "insight: 1 | intimidation: 2 | religion: 3",
+                resistanceMods: "nil",
+                subRaces: ""
+              )
+
+  Dndrace.create(name: 'Halfling',
+                description: "Halflings are small and nimble, half the height of a human, but fairly stout. They are cheerful and practical.",
+                image: "races/halfling",
+                #mod array: str dex con int wis cha speed darkvision misc
+                raceMods: "0,2,0,0,0,0,25,60, Intimidation proficiency ",
+                hasSubRaces: true,
+                skillMods: "insight: 1 | intimidation: 2 | religion: 3",
+                resistanceMods: "nil",
+                subRaces: "Lightfoot, 0,0,0,0,0,2,0,0, nil"
+              )
+
+Dndrace.create(name: 'Tiefling',
+              description: "Tieflings bear the distinct marks of their infernal ancestry: horns, a tail, pointed teeth, and solid-colored eyes. They are smart and charismatic.",
+              image: "races/tiefling",
+              #mod array: str dex con int wis cha speed darkvision misc
+              raceMods: "0,0,0,1,0,2,25,60, Intimidation proficiency ",
+              hasSubRaces: true,
+              skillMods: "insight: 1 | religion: 3",
+              resistanceMods: "nil",
+              subRaces: "Lightfoot, 0,0,0,0,0,2,0,0, nil"
             )
