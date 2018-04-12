@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20180311023233) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.integer "attributePool"
     t.integer "experience"
     t.integer "level"
     t.string "skills"

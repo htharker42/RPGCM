@@ -153,7 +153,7 @@ export class Dndraceselector extends React.Component {
 
       return(
 
-        <div className= "dndRacebutton" >
+        <div className= "characterStats" >
           {raceForm}
           <br />
           {subRaces}

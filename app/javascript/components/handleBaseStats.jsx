@@ -35,10 +35,11 @@ export class HandleBaseStats extends React.Component {
     render(){
         return(
           <div>
-            <div className= "characterStatsButton">
+            <div className = "characterStatsButton">
             <button name = {this.props.stat} onClick = {this.handleStatChange} value = "minus">-</button>
-            <h3>{this.props.stat.toUpperCase()}:{this.props.statValue + this.props.statModifier}</h3>
-            <h4> Bonus: {this.props.statModifier}</h4>
+              <div className = "stats">
+            <h3> {this.props.stat.toUpperCase()}:{this.props.statValue + this.props.statModifier} | Bonus: {this.props.statModifier} </h3>
+            </div>
             <button name = {this.props.stat} onClick = {this.handleStatChange} value = "" >+</button>
         </div>
       </div>

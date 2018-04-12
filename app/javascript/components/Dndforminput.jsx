@@ -16,7 +16,7 @@ export class Dndforminput extends React.Component {
 
 
     render() {
-      let classname = `${this.props.name}formItem`;
+      let classname = `${this.props.name}FormItem`;
       let label = `${this.props.name.toUpperCase()}: `;
       return(
         <div className = {classname}>

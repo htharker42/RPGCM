@@ -6,6 +6,8 @@ import { Dndraceselector } from "./Dndraceselector";
 import { Dndforminput } from "./Dndforminput";
 //import { Api } from "./api";
 import { ImageUpload } from "./Imageuploader";
+import MyImage from "default.jpg";
+
 
 class DndForm extends React.Component {
   debugger;
@@ -20,6 +22,7 @@ class DndForm extends React.Component {
                       character: this.props.character, //character object will be update the Character Model.
                       dndraces: this.props.dndraces,
                       image: {},
+                      raceImage: "default.jpg",
                       statPool: 30,
                       stats: ["str", "dex", "con","int","wis","cha"],
                       speed: 0,
@@ -68,14 +71,12 @@ class DndForm extends React.Component {
     })
   }
 
-handleChangeForm(keyID, e){
-  this.setState({[keyID]: e}) //pass to display value
+handleChangeForm(keyID, value){
+  this.setState({[keyID]: value}) //pass to display value
 }
 
 handleStatChange(statName, statMod, statPool){
     let mod = statName + "mod";
-    console.log(mod);
-
     this.setState({[statName]: statMod});
     this.setState({statPool: statPool});
     }
@@ -99,8 +100,10 @@ _handleAttributeModsArray(attributes){
 
 handleChangeRace(race, id, subRaceName, attributeMods, mode){
     console.log(attributeMods)
+    let image = `${race.toLowerCase()}.png`
+    console.log(image)
     if (mode === "POST"){
-      this.setState({race: race, subRaceName: subRaceName})
+      this.setState({race: race, subRaceName: subRaceName, raceImage: image})
     } else if (mode === "PATCH"){
       this.setState({subRaceName: subRaceName})
     }
@@ -156,27 +159,38 @@ handleChangeRace(race, id, subRaceName, attributeMods, mode){
 
     return (
       <div>
-        <div className= "characterHeader">
+        <form className="dndForm">
+        <div className= "characterStats">
           <h2>Character Sheet:</h2>
+            <img src={MyImage} alt="player's race"/>
             <Dndforminput
               name="name"
               value={this.state.name}
               onChange={this.handleChangeForm}
               />
-          <h3>Race: {this.state.race} {`| ${this.state.subRaceName}`}</h3>
-        </div>
+            <h3>Race: {this.state.race} {` ${this.state.subRaceName}`}</h3>
+
+          </div>
+
         <div className="characterStats">
-          <h3>Attribute Pool: {this.state.statPool}</h3>
+          <h2>Attribute Pool: {this.state.statPool}</h2>
           {characterStats}
-          <h3>Speed: {this.state.speedMod}</h3>
-          <h3>Passive Perception: {this.state.passivePerceptionMod}</h3>
         </div>
-        <form className="dndForm">
-              <Dndforminput
-                name="description"
-                value={this.state.description}
-                onChange={this.handleChangeForm}
-                />
+
+        <div className="characterStats">
+          <h2>Speed: {this.state.speedMod}</h2>
+          <h2>Passive Perception: {this.state.passivePerceptionMod}</h2>
+        </div>
+
+
+        <div className="characterStats">
+          <h2>Notes: </h2>
+                  <Dndforminput
+                    name="description"
+                    value={this.state.description}
+                    onChange={this.handleChangeForm}
+                    />
+        </div>
 
               <Dndraceselector
                 character={this.props.race}
