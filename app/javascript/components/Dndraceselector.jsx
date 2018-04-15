@@ -67,7 +67,6 @@ export class Dndraceselector extends React.Component {
     }
 
     _handleSubRaceSelection(e){
-      //
         var attributeMods = []; //reset attributeMods everytime button is clicked
         attributeMods = this._handleAttributeMods(e.target.id, "attributeModsSubRace");
         this.props.onChange( this.state.raceName, "", e.target.value, attributeMods, "PATCH");

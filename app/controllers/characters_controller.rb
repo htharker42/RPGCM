@@ -12,12 +12,14 @@ class CharactersController < ApplicationController
   end
 
   def new
+    @dndclasses = Dndclass.all
     @dndrace = Dndrace.all
     @character = current_user.characters.build
     @user = current_user
   end
 
   def create
+    @dndclasses = Dndclass.all
     @dndrace = Dndrace.all
     @character = current_user.characters.build(character_params)
     @user = current_user
@@ -35,16 +37,19 @@ class CharactersController < ApplicationController
 end
 
   def show
+    @dndClass = DndClass.all
     @dndrace = Dndrace.all
     @user = current_user
   end
 
   def edit
+    @dndClass = DndClass.all
     @dndrace = Dndrace.all
     @user = current_user
   end
 
   def update
+    @dndClass = DndClass.all
     @dndrace = Dndrace.all
     @user = current_user
     if @character.update(character_params)

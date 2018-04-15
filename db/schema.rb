@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311023233) do
+ActiveRecord::Schema.define(version: 20180412055446) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -41,9 +41,26 @@ ActiveRecord::Schema.define(version: 20180311023233) do
     t.integer "speed"
     t.integer "proficiencyBonus"
     t.integer "passivePerception"
-    t.string  "perks"
-
+    t.string "perks"
     t.index ["user_id"], name: "index_characters_on_user_id"
+  end
+
+  create_table "dndclasses", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "savingthrows"
+    t.integer "hitpointbase"
+    t.integer "skills"
+    t.string "proficiencies"
+    t.integer "hitpointmodifier"
+    t.string "proficiencybonus"
+    t.string "features"
+    t.string "inventory"
+    t.string "classfeatureName"
+    t.string "classfeatureBonus"
+    t.string "spells"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "dndraces", force: :cascade do |t|

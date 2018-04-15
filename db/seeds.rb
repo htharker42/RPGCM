@@ -6,6 +6,31 @@
 #   movies = Movie.create( { name: 'Star Wars' }, { name: 'Lord of the Rings' } )
 #   Character.create(name: 'Luke', movie: movies.first)
 #mod array: str dex con int wis cha speed darkvision misc
+Dndclass.create(
+  name: 'barbarian',
+  description: 'Barbarians are...',
+  #saving throw array: str dex con int wis cha speed darkvision misc
+  savingthrows: "{'strSave': 2,  'conSave': 2}",
+  proficiencies: '{"weapons": "simple weapons & martial weapons", "tools": "none", "armor":"light armor & medium armor & shields"}',
+  hitpointbase: 12,
+  hitpointmodifier: 12,
+  classfeatureName: 'Rage',
+  classfeatureBonus: '2',
+  skills: 'animal handling & athletics & intimidation & nature & perception & survival '
+
+)
+
+Dndclass.create(
+  name: 'sorcerer',
+  description: 'wooosh, fire, lots of fire...',
+  proficiencies: '{"weapons": "Daggers darts & slings & quarterstaffs & light crossbows", "tools": "none", "armor":"none"}',
+  hitpointbase:  6,
+  hitpointmodifier: 6,
+  spells: "",
+  features: "{'conSave': 2,  'chaSave': 2}",
+  skills: 'arcana & Deception & Insight & Intimidation & Persuasion & Religion'
+)
+
 Dndrace.create(name: 'Dragonborn',
               description: "Kin to dragons, dragonborn resemble humanoid dragons, without wings or tail and standing erect. They tend to make excellent warriors.",
               image: "#",
@@ -111,8 +136,8 @@ Dndrace.create(name: 'Tiefling',
               image: "races/tiefling",
               #mod array: str dex con int wis cha speed darkvision misc
               raceMods: "0,0,0,1,0,2,25,60, Intimidation proficiency ",
-              hasSubRaces: true,
+              hasSubRaces: false,
               skillMods: "insight: 1 | religion: 3",
               resistanceMods: "nil",
-              subRaces: "Lightfoot, 0,0,0,0,0,2,0,0, nil"
+              subRaces: ""
             )
