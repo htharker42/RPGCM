@@ -31,21 +31,25 @@ class DndForm extends React.Component {
                       speedMod: 0,
                       passivePerceptionMod: 0,
                       subRaceName: "",
-                      playerClass: 0,
+                      playerClass: 0, //use Integer to ID class ID = class.id - 1
                       playerLevel: 1,
-                      playerHitPoints: 0,
-                      playerExp: 0
+                      playerHitPoints: 10,
+                      playerExp: 0,
                     }
 
                     let keyID;
                     for(keyID of Object.keys(this.props.character)){
                         this.state[keyID]= this.props.character[keyID];
                     }
+
                     //key attribute Modifier
                     this.state.stats.forEach((x)=>{
-                      let modName = (x+"Mod")
-                      this.state[modName] = 0
+                      let modName = (x+"Mod");
+                      let saveName = (x+"Save");
+                      this.state[modName] = 0;
+                      this.state[saveName] = Math.round((Math.random()*Math.ceil(20)));
                     })
+
     this._handleAttributeModsArray = this._handleAttributeModsArray.bind(this)
     this.handleStatChange = this.handleStatChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -175,64 +179,213 @@ handleChangeRace(race, id, subRaceName, attributeMods, mode){
       })
 
       let playerClass = this.props.dndclasses[this.state.playerClass];
-      let profsObj = JSON.parse(playerClass.proficiencies);
+      console.log(playerClass)
+      //let profsObj = JSON.parse(playerClass.proficiencies);
 
     return (
 
-      <div>
-        <form className="dndForm">
-        <div className= "characterStats">
-          <h2>Character Sheet:</h2>
-            <img src={MyImage} alt="player's race"/>
-            <Dndforminput
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChangeForm}
-              />
-            <h3>Race: {this.state.subRaceName} {this.state.race} </h3>
-              <br />
-            <h3>Class:{playerClass.name.toUpperCase()}</h3>
-            <h4>Level: {this.state.playerLevel}</h4>
-            <h5>Experience: {this.state.playerExp}</h5>
-            <h4>Hit Points: {this.state.playerHitPoints}</h4>
+      <div className="dndForm">
+        <form>
+        <div className= "characterName">
+          <Dndforminput
+            name="name"
+            value={this.state.name}
+            onChange={this.handleChangeForm}
+            />
+        </div>
+        <div className="characterHeader">
+          <div className="headerItem">
+              <h5>{playerClass.name.toUpperCase()}</h5>
+            </div>
+              <div className="headerItem">
+                <h5>placeholder background</h5>
+            </div>
+            <div className="headerItem">
+              <h5>{this.state.playerLevel}</h5>
+            </div>
+            <div className="headerItem headerLable">
+              <h6>Class</h6>
+            </div>
+            <div className="headerItem headerLable">
+              <h6>Background</h6>
+            </div>
+            <div className="headerItem headerLable">
+              <h6>Level</h6>
+            </div>
+            <div className="headerItem">
+              <h5>Alignment</h5>
+            </div>
+            <div className="headerItem">
+              <h5>{this.state.subRaceName}{this.state.race}</h5>
+            </div>
+            <div className="headerItem">
+              <h5>{this.state.playerExp}</h5>
+            </div>
+            <div className="headerItem headerLable">
+              <h6>Race</h6>
+            </div>
+            <div className="headerItem headerLable">
+              <h6>Alignment</h6>
+            </div>
+            <div className="headerItem headerLable">
+              <h6>Experience</h6>
+            </div>
+            <div className="headerItem">
+              <h6> Inspiration: {this.state.inspiration}
+            </h6>
+          </div>
+            <div className="headerItem">
+              <h6> Proficiency Bonus: {this.state.proficiencyBonus}
+             </h6>
+           </div>
+            <div className="headerItem">
+              <h6> Perception: {this.state.perception}
+             </h6>
+           </div>
+           <div className="headerItem">
+             <h6>Armor Class: {this.state.armorClass}</h6>
+          </div>
+          <div className="headerItem">
+             <h6>Initative: {this.state.dexMod}</h6>
+             </div>
+             <div className="headerItem">
+             <h6>Speed: {this.state.speed}</h6>
+             </div>
+             <div className="headerItem">
+             <h6>Hitpoints: {this.state.playerHitPoints}</h6>
+             </div>
+             <div className="headerItem">
+             <h6>Hit Dice: 00 </h6>
+             </div>
+             <div className="headerItem">
+             <h6>Wisdom: {this.state.passivePerception}</h6>
+             </div>
+             <div className="headerItem">
+             <h6>Death Saves </h6>
+             </div>
+             <div className="headerItem">
+             <h6>Success: 0-0-0</h6>
+             </div>
+             <div className="headerItem">
+             <h6>Failures: 0-0-0</h6>
+             </div>
 
+        </div>
+          <div className="characterAttributes">
+            <h3>Attribute Pool: {this.state.statPool}</h3>
+            {characterStats}
           </div>
 
-        <div className="characterStats">
-          <h2>Attribute Pool: {this.state.statPool}</h2>
-          {characterStats}
+        <div className="column2 singleStat savingThrows">
+          <h4>  Saving Throws </h4>
+          <h5> Str: {this.state.strSave + this.state.strMod}</h5>
+          <h5> Dex: {this.state.dexSave + this.state.dexMod}</h5>
+          <h5> Con: {this.state.conSave + this.state.conMod}</h5>
+          <h5> Int: {this.state.intSave + this.state.intMod}</h5>
+          <h5> Wis: {this.state.wisSave + this.state.wisMod}</h5>
+          <h5> Con: {this.state.conSave + this.state.conMod}</h5>
         </div>
 
-        <div className="characterStats">
-          <h2>Speed: {this.state.speedMod}</h2>
-          <h2>Passive Perception: {this.state.passivePerceptionMod}</h2>
+        <div className="column2 singleStat skills">
+          <h4>  Skills </h4>
         </div>
 
-
-        <div className="characterStats">
-          <h2>Notes: </h2>
-                  <Dndforminput
-                    name="description"
-                    value={this.state.description}
-                    onChange={this.handleChangeForm}
-                    />
-        </div>
-            <div>
+        <div className="column2 chooseRace">
+            <h5>Select Race</h5>
               <Dndraceselector
                 character={this.props.race}
                 races={this.props.dndraces}
-                onChange={this.handleChangeRace}/>
-            </div>
+                onChange={this.handleChangeRace} />
+        </div>
 
-            <div>
-              <Dndclassselector
-                classes={this.props.dndclasses}
-                onChange={this.handleChangeClass}/>
-            </div>
+        <div className="column2 chooseRace chooseClass">
+            <h5>Select Class</h5>
+          <div>
+            <Dndclassselector
+              classes={this.props.dndclasses}
+              onChange={this.handleChangeClass} />
+          </div>
 
-            <input type="submit"
-              value="Create Character"
-              onClick={this.handleSubmit}/>
+        </div>
+
+        <div className="column3 attacks">
+          <div className="attackandspells">
+              <h4>Attack : Name : Damage</h4>
+              <h4>Attack : Name : Damage</h4>
+              <h4>Attack : Name : Damage</h4>
+              <h4>Attack : Name : Damage</h4>
+          </div>
+          <div className="asLabel">
+            <h6>Attacks and Spell Casting</h6>
+          </div>
+        </div>
+
+        <div className="column3 attacks equip">
+          <div className="attackandspells equipmentList">
+              <h4>CP</h4><h4>description</h4>
+          </div>
+          <div className="asLabel">
+            <h6>Equipment</h6>
+          </div>
+        </div>
+
+        <div className="column4 descriptions personalityContainer">
+          <Dndforminput
+            name="Personality Traits"
+            value={this.state.personalityTraits}
+            onChange={this.handleChangeForm}
+            />
+
+            <div className="itemLabel">
+              <h6>Personality Traits</h6>
+          </div>
+
+          <Dndforminput
+            name="Ideals"
+            value={this.state.ideals}
+            onChange={this.handleChangeForm}
+            />
+          <div className="itemLabel">
+            <h6>Ideals</h6>
+        </div>
+
+        <Dndforminput
+          name="Bonds"
+          value={this.state.bonds}
+          onChange={this.handleChangeForm}
+          />
+
+        <div className="itemLabel">
+          <h6>Bonds</h6>
+      </div>
+
+          <Dndforminput
+            name="Flaws"
+            value={this.state.flaws}
+            onChange={this.handleChangeForm}
+            />
+
+      <div className="itemLabel">
+        <h6>Flaws</h6>
+    </div>
+
+  </div>
+
+  <div className="column4 featuresAndTraits">
+      <Dndforminput
+        name="description"
+        value={this.state.description}
+        onChange={this.handleChangeForm}
+        />
+    <div className="asLabel">
+      <h6>Features and Traits</h6>
+    </div>
+  </div>
+  <div className="submitButton">
+     <input type="submit"
+      value="Create Character"
+      onClick={this.handleSubmit}/> </div>
+
         </form>
     </div>
     )

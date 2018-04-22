@@ -28,7 +28,26 @@
 <% @dndrace.each do |race| %>
 
 <% end %>
-
+=begin
+    t.integer :animalhandle
+    t.integer :arcana
+    t.integer :athletics
+    t.integer :deception
+    t.integer :history
+    t.integer :characters
+    t.integer :insight
+    t.integer :intimidation
+    t.integer :investigation
+    t.integer :medicine
+    t.integer :nature
+    t.integer :perception
+    t.integer :performance
+    t.integer :persuasion
+    t.integer :religion
+    t.integer :slightofhand
+    t.integer :stealth
+    t.integer :survival
+=end
 
 
 

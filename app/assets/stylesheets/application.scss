@@ -60,13 +60,7 @@
    }
  }
 
-    .dndRacebutton{
-      background-color: white;
-      border: 2px solid purple;
-      width: 50%;
-      height: 150px;
-      display: inline-block;
-    }
+
 
     .subRacemenu{
       display: inline-block;
@@ -83,10 +77,32 @@
       }
 
     }
+    .dndForm{
+      width: 100%;
+      height: auto;
+    }
+
+    .characterName{
+      text-align: right;
+      width: 420px;
+      height: 100px;
+      border: 1px solid black;
+      background-color: purple;
+      border-radius: 10px;
+      padding: 2px;
+      textarea{
+        font-size: 2rem;
+        width: 300px;
+        height: 50px;
+        resize: none;
+      }
+    }
 
     .racemenu{
       display: inline-block;
-      input{
+      width: 200px;
+
+      textarea{
         width: 100px;
         height: 30px;
         font-size: 1.1rem;
@@ -97,27 +113,374 @@
         border-radius: 10px;
       }
     }
+
     .characterHeader{
       color: black;
-      font-size: 1.5rem;
-      width: 300px;
-      height: 300px;
-      position: relative;
-      top: auto;
-      background-color: green;
-      border: 1px solid black;
       display: inline-block;
-      margin: 10px;
-      padding: 1px;
+      font-size: 1.0rem;
+      width: 900px;
+      height: 260px;
+      position: absolute;
+      left: 550px;
+      display: absolute;
+      margin: 2px;
+      text-align: center;
+      display: inline-block;
+      background-color: lightgray;
+      border: 2px solid black;
+      border-radius: 10px;
 
+      .headerItem{
+        width: 290px;
+        height: auto;
+        display: inline-block;
+        font-size: 1.0rem;
+        color: darkblue;
+        line-height: 0.8rem
+      }
+      .headerLable{
+        height: 20px;
+        color: black;
+      }
+      .characterButton{
+        border: 1px solid blue;
+        border-radius: 2px;
+        width: 30px;
+        height: 30px;
+        margin: 2px;
+        color: blue;
+        background-color: darkgray;
+      }
+    }
+    .subSkills{
+      top:310px;
+      height: 100px;
     }
 
+    .characterAttributes{
+      position: absolute;
+      align: center;
+      width: 110px;
+      height: auto;
+      left: 10px;
+      top: 220px;
+      background-color: lightgray;
+      border: 3px solid darkgray;
+      border-radius: 5px;
+      display: inline-block;
+
+      .characterStatsButton{
+        text-align: center;
+        margin: 5px;
+        padding: 0 20%;
+        width: auto;
+      }
+
+      .attributeContainter{
+        width:95%;
+        height: auto;
+        border: 1px solid black;
+        margin: 0 auto;
+        padding: 0 auto;
+        text-align: center;
+      }
+      button{
+        width: 20px;
+        height: 20px;
+        display: inline;
+        color: black;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        background-color: purple;
+
+      }
+      h2{
+        margin: 4px;
+        font-size: 2.6rem;
+        color: purple;
+      }
+
+      h3{
+        margin: 2px;
+        font-size: 2.1rem;
+        color: black;
+      }
+
+      h4{
+        margin: 2px;
+        font-size: 1.6rem;
+        color: purple;
+        }
+
+        h5{
+          font-size: 1rem;
+          color: black;
+        }
+    }
+
+    .characterName{
+      border: 1px solid black;
+      width: 33%;
+      height: 60px;
+      display: inline-block;
+      position: absolute;
+      margin: 2px;
+      .nameFormItem{
+        padding: 2px 5px;
+        label{
+            font-size: 2rem;
+            color: purple;
+          }
+      }
+
+    }
+.column2{
+  position: absolute;
+  left: 130px
+}
+  .singleStat{
+    width: 450px;
+    height: 40px;
+    display: inline;
+    padding-bottom: 14px;
+
+    h3{
+      margin: 3px;
+      font-size: 2rem;
+      display: inline;
+      color: black;
+      padding: 5px;
+    }
+    .numbers{
+      position: relative;
+      top: 3px;
+      font-size: 2.8rem;
+      color: black;
+      margin: 10 12 10 09;
+      border: 2px solid black;
+      padding: 4px;
+      border-radius: 4px;
+
+    }
+  }
+  .inspiration{
+    position: absolute;
+    top: 230px;
+    left: 11%;
+  }
+  .proficiency{
+    position: absolute;
+    top: 290px;
+    left: 11%;
+  }
+
+  .perception{
+    position: absolute;
+    top: 350px;
+    left: 11%;
+  }
+
+.savingThrows{
+  top: 680px;
+  width: 195px;
+  height: 380px;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+.skills{
+  position:absolute;
+  top: 610px;
+  left: 340px;
+  width: 195px;
+  height: 580px;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.column3{
+  position: absolute;
+  left: 550px;
+}
+
+.chooseRace{
+  top: 220px;
+  background-color: lightgray;
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  width:200px;
+  height: 450px;
+  display: inline-block;
+  text-align: center;
+
+  input{
+    background-color: white;
+    border: 2px solid red;
+    width: 80px;
+    height: 30px;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: black;
+}
+
+.racemenu{
+  width: auto;
+  height: auto;
+  margin: 5px;
+  }
+
+  .subRaceMenu{
+    width: auto;
+    height: auto;
+    display: inline-block;
+    margin: 5px;
+    input{
+      background-color: white;
+      border: 2px solid blue;
+      border-radius: 0px;
+      color: black;
+    }
+  }
+
+}
+.chooseClass{
+  left: 340px;
+  border-radius: 10px;
+  width:200px;
+  height: 370px;
+  input{
+    background-color: blue;
+    border: 2px solid purple;
+    color: white;
+  }
+}
+
+.minorStat{
+  width: auto;
+  height: auto;
+  margin: 10px 24px;
+  text-align: left;
+  display: inline-block;
+
+  h3{
+    font-size: 1.4rem;
+    color: black;
+  }
+
+}
+
+.hitpoints{
+  width:200px;
+  height: 90px;
+  margin: 10px;
+  text-align: center;
+}
+
+.attacks{
+  top: 420px;
+  width: 350px;
+  height: 350px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: 1rem;
+  text-align: center;
+
+  .attackandspells{
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+
+  }
+  .asLabel{
+    font-size: 1.8rem;
+
+  }
+}
+
+.equip{
+  top: 778px;
+  width: 350px;
+  height: 412px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+
+  .equipmentList{
+    height: 360px;
+  }
+}
+
+.column4{
+  position: absolute;
+  left: 58%;
+}
+
+.descriptions{
+  top: 420px;
+  background-color: lightgray;
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  width:400px;
+  height: 375px;
+}
+
+.personalityContainer{
+  width: 535px;
+  height: auto;
+  background-color: lightgray;
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 10px 30px;
+  text-align: center;
+  textarea{
+    text-align: left;
+    width: 480px;
+    height: 100px;
+    resize: none;
+    overflow: auto;
+    border: 1px solid darkgray;
+    background-color: white;
+    padding: 5px;
+  }
+}
+
+.itemlabel{
+  width: 100%;
+  height: 10px;
+  z-index: 2;
+}
+
+.featuresAndTraits{
+  top: 1010px;
+  width: 535px;
+  height: 180px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+
+  textarea{
+    margin: 5px;
+    width: 500px;
+    height: 130px;
+    text-align: left;
+    resize: none;
+    overflow: auto;
+  }
+}
+
     .characterStats{
-        border: 3px solid gray;
+        border: 3px solid lightgray;
         font-size: 1.5rem;
         height: 350px;
         width: 350px;
-        border: 1px solid black;
         position: relative;
         display: inline-block;
         top: 10px;
@@ -151,28 +514,19 @@
         width: 100%;
         margin: 0 auto;
     }
-      button{
-        padding: 2px 3px;
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-        color: black;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 2rem;
-        background-color: purple;
-      }
 
-      h3{
-        padding: 2px 3px;
-        display: inline;
-        font-size: 1.5rem;
-        margin: 0 auto;
-        color: purple;
       }
-        .stats{
-          width: 140px;
-          display: inline-block;
-          margin: 2px 10px;
+  .submitButton{
+    position:absolute;
+    left: 10px;
+    top: 1080px;
+        input{
+          border-radius: 5px;
+          border: 2px solid blue;
+          color: white;
+          width: 318px;
+          height: 110px;
+          text-align: center;
+          background-color: purple;
         }
-      }
+  }

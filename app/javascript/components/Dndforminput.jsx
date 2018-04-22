@@ -14,19 +14,17 @@ export class Dndforminput extends React.Component {
       this.props.onChange(keyID, datum);
     }
 
-
     render() {
       let classname = `${this.props.name}FormItem`;
       let label = `${this.props.name.toUpperCase()}: `;
       return(
         <div className = {classname}>
-              <label>{label}
-                <input
+                <textarea
                   type = "text"
+                  placeholder = {label}
                   name = {this.props.name}
                   value = {this.props.value}
                   onChange= {this.handleChange} />
-              </label>
       </div>
     )
   }

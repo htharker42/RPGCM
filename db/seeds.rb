@@ -17,12 +17,22 @@ Dndclass.create(
   classfeatureName: 'Rage',
   classfeatureBonus: '2',
   skills: 'animal handling & athletics & intimidation & nature & perception & survival '
-
 )
 
 Dndclass.create(
   name: 'sorcerer',
   description: 'wooosh, fire, lots of fire...',
+  proficiencies: '{"weapons": "Daggers darts & slings & quarterstaffs & light crossbows", "tools": "none", "armor":"none"}',
+  hitpointbase:  6,
+  hitpointmodifier: 6,
+  spells: "",
+  features: "{'conSave': 2,  'chaSave': 2}",
+  skills: 'arcana & Deception & Insight & Intimidation & Persuasion & Religion'
+)
+
+Dndclass.create(
+  name: 'bard',
+  description: 'it is a bard.',
   proficiencies: '{"weapons": "Daggers darts & slings & quarterstaffs & light crossbows", "tools": "none", "armor":"none"}',
   hitpointbase:  6,
   hitpointmodifier: 6,

@@ -138,7 +138,7 @@ export class Dndraceselector extends React.Component {
     var subRaces = this.state.subRaces.map((subRace)=>{
           let subRaceName = subRace[0].trim();
           return(
-            <div className = "subRacemenu">
+            <div className = "subRaceMenu">
               <input type = "button"
                 key={subRaceName}
                 value={subRaceName}
@@ -152,7 +152,7 @@ export class Dndraceselector extends React.Component {
 
       return(
 
-        <div className= "characterStats" >
+        <div>
           {raceForm}
           <br />
           {subRaces}

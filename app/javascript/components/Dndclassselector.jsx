@@ -26,7 +26,7 @@ export class Dndclassselector extends React.Component {
       })
 
       return(
-        <div className= "characterStats" >
+        <div>
             {dndClasses}
         </div>
     )

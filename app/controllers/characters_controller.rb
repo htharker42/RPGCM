@@ -37,19 +37,19 @@ class CharactersController < ApplicationController
 end
 
   def show
-    @dndClass = DndClass.all
+    @dndclasses = Dndclass.all
     @dndrace = Dndrace.all
     @user = current_user
   end
 
   def edit
-    @dndClass = DndClass.all
+    @dndclasses = Dndclass.all
     @dndrace = Dndrace.all
     @user = current_user
   end
 
   def update
-    @dndClass = DndClass.all
+    @dndclasses = Dndclass.all
     @dndrace = Dndrace.all
     @user = current_user
     if @character.update(character_params)
@@ -60,7 +60,6 @@ end
   end
 
   def destroy
-    @dndrace = Dndrace.all
     @character.destroy
     redirect_to root_path, notice: "Character has been deleted!"
   end
