@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180412055446) do
     t.string "description"
     t.string "savingthrows"
     t.integer "hitpointbase"
-    t.integer "skills"
+    t.string "skills"
     t.string "proficiencies"
     t.integer "hitpointmodifier"
     t.string "proficiencybonus"

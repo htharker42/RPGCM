@@ -83,10 +83,11 @@
     }
 
     .characterName{
-      text-align: right;
-      width: 420px;
+      position: absolute;
+      text-align: left;
+      width: 520px;
       height: 100px;
-      border: 1px solid black;
+      border: 2px solid black;
       background-color: purple;
       border-radius: 10px;
       padding: 2px;
@@ -138,6 +139,17 @@
         color: darkblue;
         line-height: 0.8rem
       }
+      .dropDownMenu{
+        color: black;
+        width: 60px;
+        height: 60px;
+        border: 1px solid black;
+        border-radius: 3px;
+        background-color: rgba(255, 255, 255, 0.8);
+        h5:hover{
+          color: white;
+        }
+      }
       .headerLable{
         height: 20px;
         color: black;
@@ -150,6 +162,7 @@
         margin: 2px;
         color: blue;
         background-color: darkgray;
+
       }
     }
     .subSkills{
@@ -177,14 +190,14 @@
       }
 
       .attributeContainter{
-        width:95%;
+        width:90px;
         height: auto;
         border: 1px solid black;
         margin: 0 auto;
         padding: 0 auto;
         text-align: center;
       }
-      button{
+      input{
         width: 20px;
         height: 20px;
         display: inline;
@@ -192,7 +205,6 @@
         border-radius: 5px;
         font-size: 0.8rem;
         background-color: purple;
-
       }
       h2{
         margin: 4px;
@@ -283,12 +295,28 @@
 .savingThrows{
   top: 680px;
   width: 195px;
-  height: 380px;
+  height: 200px;
   border: 1px solid black;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
 }
+.alignment{
+  top: 890px;
+  width: 195px;
+  height: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  h5{
+    line-height: 0.8rem;
+  }
+  input{
+
+  }
+}
+
 .skills{
   position:absolute;
   top: 610px;
@@ -417,7 +445,7 @@
 
 .column4{
   position: absolute;
-  left: 58%;
+  left: 910px;
 }
 
 .descriptions{
@@ -524,8 +552,8 @@
           border-radius: 5px;
           border: 2px solid blue;
           color: white;
-          width: 318px;
-          height: 110px;
+          width: 200px;
+          height: 80px;
           text-align: center;
           background-color: purple;
         }

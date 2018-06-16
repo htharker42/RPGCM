@@ -1,6 +1,87 @@
 
-<%= react_component("DndForm", { dndclasses: @dndclasses, dndraces: @dndrace, character: @character })  %>
+<% react_component("DndForm", { dndclasses: @dndclasses, dndraces: @dndrace, character: @character })  %>
 <div id="app">
+  <%= simple_form_for(@character) do |f| %>
+    <% if @character.errors.any? %>
+          <div id="errors">
+            <h2><%= pluralize(@character.errors.count, "error")%>
+              prevented this Character for saving.
+            </h2>
+            <ul>
+              <%=@character.errors.full_message.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+              </ul>
+            <% end %>
+      </div>
+<form>
+    <div class="form container-flux">
+      <div class="arrow" id="leftNavArrow">
+        <h1> < </h1>
+      </div>
+      <div class="content container-flex">
+        <div class="card flex-container" id="card0">
+              <div class="cardTitle">
+                <h1>Choose a Game: </h1>
+            </div>
+
+            <div class="cardContent">
+            <div class="game">
+
+              <input type="button" name="D&D" id="dndButton" >
+              <h3 style="color: red;">D&D</h3>
+            </div>
+
+              <div class="game">
+            <input type="button" name="ShadowRun" id="srButton">
+              <h3 style="color: #55E7D3;">ShadowRun</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="card1">
+                  <div class="form-group short" id="imageUpload">
+                  <%= f.input :image, input_html: {class: 'input'} %>
+                </div>
+
+                <div class="form-group short">
+
+                  <%= f.input :name, input_html: {class: 'form-control'} %>
+                </div>
+
+                <div class="form-group medium">
+                      <%= f.input :class, input_html: {class: 'form-control'} %>
+                </div>
+
+                <div class="form-group medium">
+                      <%= f.input :race, input_html: {class: 'form-control'} %>
+                </div>
+
+           </div>
+
+      </div>
+      <div class="arrow" id="rightNavArrow">
+        <h1> > </h1>
+      </div>
+    </div>
 
 </div>
+
+</form>
+
+
+   <div class="card" id="card2">
+
+           <div class="form-group">
+             <%= f.input :name, input_html: {class: 'form-control'} %>
+           </div>
+
+           <div class="form-group">
+                 <%= f.input :description, input_html: {class: 'form-control'} %>
+                 <%= f.button :submit%>
+           </div>
+
+      </div>
+</div>
+
+<% end %>
 # raw(render(template: './characters/index.json.jbuilder'))

@@ -5,10 +5,13 @@ import { HandleBaseStats } from "./handleBaseStats";
 import { Dndraceselector } from "./Dndraceselector";
 import { Dndclassselector } from "./Dndclassselector";
 import { Dndforminput } from "./Dndforminput";
+import { SavingThrows } from "./SavingThrows";
 //import { Api } from "./api";
 import { ImageUpload } from "./Imageuploader";
 import MyImage from "default.jpg";
-
+import { CharacterSkills } from "./CharacterSkills"
+import {Inventory} from "./Inventory"
+import { SelectAlignment } from "./SelectAlignment"
 
 class DndForm extends React.Component {
   debugger;
@@ -35,6 +38,9 @@ class DndForm extends React.Component {
                       playerLevel: 1,
                       playerHitPoints: 10,
                       playerExp: 0,
+                      alignment: "neutral",
+                      skills: " "
+                      cards = [0,1,2,3,4,5,6];
                     }
 
                     let keyID;
@@ -43,12 +49,20 @@ class DndForm extends React.Component {
                     }
 
                     //key attribute Modifier
-                    this.state.stats.forEach((x)=>{
-                      let modName = (x+"Mod");
-                      let saveName = (x+"Save");
+
+                    let modArray =[];
+                    let saveArray =[];
+                    this.state.stats.forEach((stat)=>{
+                      let modName = (stat+"Mod");
+                      let saveName = (stat+"Save");
                       this.state[modName] = 0;
                       this.state[saveName] = Math.round((Math.random()*Math.ceil(20)));
+
+                      modArray.push(this.state[modName]);
+                      saveArray.push(this.state[saveName]);
                     })
+                    this.state.modArray = modArray;
+                    this.state.saveArray = saveArray;
 
     this._handleAttributeModsArray = this._handleAttributeModsArray.bind(this)
     this.handleStatChange = this.handleStatChange.bind(this);
@@ -57,6 +71,10 @@ class DndForm extends React.Component {
     this.handleChangeRace = this.handleChangeRace.bind(this);
     this.handleImage = this.handleImage.bind(this);
     this.handleChangeClass = this.handleChangeClass.bind(this);
+  }
+
+  _handleCardChange(cardID, direction){
+
   }
 
   handleSubmit(e){
@@ -103,10 +121,13 @@ _parser(mods){
 _handleAttributeModsArray(attributes){
   let modsArray = ["strMod", "dexMod", "conMod","intMod","wisMod","chaMod","speedMod","passivePerceptionMod"];
   let x = 0;
+  let modValueArray = [];
   modsArray.forEach((mod) => {
-      this.setState({[mod]: attributes[x]})
+      this.setState({[mod]: attributes[x]});
+      modValueArray.push(attributes[x]);
       x+=1;
     });
+    this.setState({modArray: modValueArray});
 }
 
 handleChangeClass(classId){
@@ -117,7 +138,8 @@ handleChangeClass(classId){
 
   this.setState({
     playerClass: classId,
-    playerHitPoints: hitpoints
+    playerHitPoints: hitpoints,
+    skills: this.props.dndclasses[classId].skills
       });
   console.log(this.state.playerClass)
 }
@@ -127,7 +149,8 @@ handleChangeRace(race, id, subRaceName, attributeMods, mode){
     if (mode === "POST"){
       this.setState({race: race, subRaceName: "", raceImage: image})
     } else if (mode === "PATCH"){
-      this.setState({subRaceName: subRaceName})
+      this.setState({ hasSubRace: true,
+          subRaceName: subRaceName})
     }
     this._handleAttributeModsArray(attributeMods)
   }
@@ -185,7 +208,7 @@ handleChangeRace(race, id, subRaceName, attributeMods, mode){
     return (
 
       <div className="dndForm">
-        <form>
+
         <div className= "characterName">
           <Dndforminput
             name="name"
@@ -213,7 +236,7 @@ handleChangeRace(race, id, subRaceName, attributeMods, mode){
               <h6>Level</h6>
             </div>
             <div className="headerItem">
-              <h5>Alignment</h5>
+              <h5>{this.state.alignment}</h5> <button>V</button>
             </div>
             <div className="headerItem">
               <h5>{this.state.subRaceName}{this.state.race}</h5>
@@ -278,16 +301,27 @@ handleChangeRace(race, id, subRaceName, attributeMods, mode){
 
         <div className="column2 singleStat savingThrows">
           <h4>  Saving Throws </h4>
-          <h5> Str: {this.state.strSave + this.state.strMod}</h5>
-          <h5> Dex: {this.state.dexSave + this.state.dexMod}</h5>
-          <h5> Con: {this.state.conSave + this.state.conMod}</h5>
-          <h5> Int: {this.state.intSave + this.state.intMod}</h5>
-          <h5> Wis: {this.state.wisSave + this.state.wisMod}</h5>
-          <h5> Con: {this.state.conSave + this.state.conMod}</h5>
+            <SavingThrows
+              modArray = {this.state.modArray}
+              saveArray = {this.state.saveArray}
+              stats = {this.state.stats}
+              />
+        </div>
+
+        <div className="column2 singleStat alignment">
+          <h4>  Alignment </h4>
+            <SelectAlignment
+              name="alignment"
+              onChange = {this.handleChangeForm}
+              />
         </div>
 
         <div className="column2 singleStat skills">
           <h4>  Skills </h4>
+          <CharacterSkills
+            skills = {this.state.skills}
+            />
+
         </div>
 
         <div className="column2 chooseRace">

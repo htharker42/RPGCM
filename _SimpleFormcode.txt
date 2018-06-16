@@ -24,6 +24,17 @@
       <%= f.button :submit%>
 </div>
 
+
+<div className="column2 singleStat savingThrows">
+  <h5> Str: {this.props.strSave + this.props.strMod}</h5>
+  <h5> Dex: {this.props.dexSave + this.props.dexMod}</h5>
+  <h5> Con: {this.props.conSave + this.props.conMod}</h5>
+  <h5> Int: {this.props.intSave + this.props.intMod}</h5>
+  <h5> Wis: {this.props.wisSave + this.props.wisMod}</h5>
+  <h5> Con: {this.props.conSave + this.props.conMod}</h5>
+</div>
+
+
 <% end %>
 <% @dndrace.each do |race| %>
 

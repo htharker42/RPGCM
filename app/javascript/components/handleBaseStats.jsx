@@ -18,7 +18,7 @@ export class HandleBaseStats extends React.Component {
   handleStatChange(e){
       let stat = this.props.statValue;
       let statPool = this.props.statPool;
-      if(e.target.value == "minus"){
+      if(e.target.value == "◄"){
             if (stat > 0) {
               stat -= 1;
               statPool += 1;
@@ -39,8 +39,8 @@ export class HandleBaseStats extends React.Component {
             <h2>{this.props.statValue + this.props.statModifier}</h2>
             <h5>Attribute Mod</h5>
             <h4>{this.props.statModifier}</h4>
-                <h3 name = {this.props.stat} onClick = {this.handleStatChange} value = "minus"> ◄ </h3>
-                <h3 name = {this.props.stat} onClick = {this.handleStatChange} value = "" > ► </h3>
+                <input type= "button" name = {this.props.stat} onClick = {this.handleStatChange} value = "◄" />
+                <input type="button" name = {this.props.stat} onClick = {this.handleStatChange} value = "►" />
             </div>
         )
       }
